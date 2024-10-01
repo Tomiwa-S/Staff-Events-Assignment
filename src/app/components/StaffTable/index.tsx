@@ -1,9 +1,10 @@
-import { FC } from 'react';
+'use client'
+import { FC, useState } from 'react';
 import Image from 'next/image';
-import { staffData } from './data';
+import { Data, StaffMember } from './data';
 import FiltersRow from './filters';
 import Top from './top';
-import { ViewSVG, InfoIcon } from './svgs';
+import { ViewSVG, InfoIcon, ArrowICon } from './svgs';
 
 
 
@@ -15,9 +16,17 @@ const StaffTable: FC = () => {
     <InfoIcon info={items.join(', ')}/>
     </span>) : items[0];
   };
+
+  const [staffData, setStaffData] = useState<StaffMember[]>(Data)
      
-     const thStyle = "px-6 py-3 border-b border-gray-200 text-left text-sm font-medium text-gray-500";
-     const defaultTdStyle = "px-6 py-4 whitespace-nowrap"
+  const thStyle = "px-6 py-3 border-b border-gray-200 text-left text-sm font-medium text-gray-500";
+  const defaultTdStyle = "px-6 py-4 whitespace-nowrap"
+
+  function sortRow(columnName:keyof StaffMember){
+
+    console.log(columnName)
+    setStaffData(Data)
+  }
   return (
     <div className="overflow-x-auto min-w-full bg-white border border-gray-200 p-4">
     <Top/>
@@ -26,11 +35,11 @@ const StaffTable: FC = () => {
 
         <thead>
           <tr>
-            <th className={thStyle} >Staff</th>
-            <th className={thStyle} >Classes</th>
-            <th className={thStyle} >Location</th>
-            <th className={thStyle} >Subjects</th>
-            <th className={thStyle} >Status</th>
+            <th className={thStyle} >Staff <ArrowICon svgClick={()=>sortRow('name')}/></th>
+            <th className={thStyle} >Classes <ArrowICon svgClick={()=>sortRow('classes')}/></th>
+            <th className={thStyle} >Location <ArrowICon svgClick={()=>sortRow('location')}/></th>
+            <th className={thStyle} >Subjects <ArrowICon svgClick={()=>sortRow('subjects')}/></th>
+            <th className={thStyle} >Status <ArrowICon svgClick={()=>sortRow('status')}/></th>
             <th className={thStyle} >Actions</th>
           </tr>
         </thead>

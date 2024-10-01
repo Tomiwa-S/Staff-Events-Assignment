@@ -1,5 +1,5 @@
 
-interface StaffMember {
+export interface StaffMember {
   name: string;
   image:string;
   classes: string[];
@@ -8,7 +8,7 @@ interface StaffMember {
   status: string;
 }
 
-export  const staffData: StaffMember[] = [
+export  const Data: StaffMember[] = [
     {
       name: 'Mrs. Ajah Naomi Olatunji',
       image:'/assets/profile.png',
@@ -58,3 +58,4 @@ export  const staffData: StaffMember[] = [
       status: 'Cancelled',
     },
   ];
+

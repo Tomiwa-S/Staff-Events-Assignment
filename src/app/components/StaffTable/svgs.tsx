@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 
 export function ViewSVG(){
     return (<svg width="40" height="33" viewBox="0 0 40 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,6 +60,20 @@ export function SearchIcon(){
 <rect width="22" height="21" fill="white" transform="translate(0 0.5)"/>
 </clipPath>
 </defs>
+</svg>
+)
+}
+
+interface ArrowIconProps {
+  svgClick: ()=>void 
+}
+
+export function ArrowICon({ svgClick }: ArrowIconProps){
+
+  const [rotate, setRotate] = useState<boolean>(false);
+  
+  return (<svg onClick={svgClick} onMouseUp={()=>setRotate(prev=>!prev)} className={`inline-block ${rotate?'rotate-180':''}`} ml-2 width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 0.5C4.27614 0.5 4.5 0.723858 4.5 1V7.79289L7.14645 5.14645C7.34171 4.95118 7.65829 4.95118 7.85355 5.14645C8.04882 5.34171 8.04882 5.65829 7.85355 5.85355L4.35355 9.35355C4.15829 9.54882 3.84171 9.54882 3.64645 9.35355L0.146447 5.85355C-0.0488155 5.65829 -0.0488155 5.34171 0.146447 5.14645C0.341709 4.95118 0.658291 4.95118 0.853553 5.14645L3.5 7.79289V1C3.5 0.723858 3.72386 0.5 4 0.5Z" fill="#616161"/>
 </svg>
 )
 }
